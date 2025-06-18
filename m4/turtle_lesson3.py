@@ -1,4 +1,42 @@
 #робота зі списками 3 завдання
+
+coordinates = [12, 45, 34, 23, 50, 60, -10, 15, 25, 25]
+l=[]
+for i in range(0,len(coordinates),2):
+    x=coordinates[i]
+    y=coordinates[i+1]
+    if 0<=x<=50 and 0<=y<=50:
+        l.append(x)
+        l.append(y)
+for i in range(0,len(l),2):  
+    print(f"x: {l[i]} ; y: {l[i+1]}")
+
+# 2
+
+valid_chars = "0123456789ABCDEFabcdef"
+
+#функція перевірки кольору
+def chek_color(color):
+    if color[0]=="#" and len(color)==7:
+        for c in color[1:]:
+            if not c in valid_chars:
+                return False
+        return True
+    else:
+        return False
+a=input("Color")
+c=[]
+while a!="0":
+    if chek_color(a):
+        c.append(a)
+    else:
+        print("Некоректно введений колір.")
+    a=input("Color")
+print(c)
+
+#3
+
+
 # Початковий список курсорів
 cursors = ["arrow", "turtle", "circle", "square", "triangle", "classic"]
 
