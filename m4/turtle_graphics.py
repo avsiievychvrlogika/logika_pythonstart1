@@ -67,3 +67,23 @@ def fon(col1,col2):
   width(250)
   color(col2)
   fd(900) 
+def home(x,y,a,c1,c2):
+    start(x,y)
+    square_fill(a,c1)
+    start(x,y+a)
+    triangle_fill(a,c2)
+    start(x+a//4,y+a//4)
+    square_fill(a/2,c2)
+#home(0,0,100,"brown","green")    
+def christmas_tree(x,y,a,b,c1,c2):
+    speed(0)
+    start(x,y)
+    rectangle_fill(a,b,c1)
+    x = x - (2*b - a)//2
+    y += b
+    for i in range(3):
+        start(x,y)
+        triangle_fill(2*b,c2)
+        y += b - b//4
+#christmas_tree(0,0,20,40,"brown","lightgreen")
+

@@ -131,17 +131,11 @@ while True:
         break
 
 
-from turtle import *
 from art import*
 from cross_dot import *
 from random import randint
 speed(0)
-field("green")
-
-
-
-
-
+draw_field(-150,50,100,"#00fff7")
 
 playing_field = [None, -1,-1,-1,-1,-1,-1,-1,-1,-1]
 x_cor = [None, -150,-50,50,-150,-50,50,-150,-50,50]
@@ -150,13 +144,16 @@ size = 100
 
 
 player = randint(0,1)
+
 while True:
    
     if player == 1:
-        move_player(player, "red")
+        print("Ходить хрестик")
+        move_player(player, "#7800FF")
         player = 0
     else:
-        move_player(player, "yellow")
+        print("Ходить нолик")
+        move_player(player, "#FF0008")
         player = 1
    
     win,cell,h = check_win()
@@ -169,4 +166,3 @@ while True:
     if check_no_one_won():
         crossOut(cell,h,"нічія")
         break
- 
