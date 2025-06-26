@@ -72,3 +72,59 @@ def check_win():
         return playing_field[3]
 
     return -1  # Ніхто не виграв
+
+
+
+
+ #бонусний варіант      
+def check_win():
+    # 1 = 2 = 3
+    if playing_field[1] == playing_field[2] == playing_field[3] :
+        return playing_field[1],1,0
+    # 4 = 5 = 6
+    if playing_field[4] == playing_field[5] == playing_field[6] :
+        return playing_field[4],5,0
+    # 7 = 8 = 9
+    if playing_field[7] == playing_field[8] == playing_field[9] :
+        return playing_field[7],7,0
+    # 1 = 4 = 7
+    if playing_field[1] == playing_field[4] == playing_field[7] :
+        return playing_field[1],1,270
+    # 2 = 5 = 8
+    if playing_field[2] == playing_field[5] == playing_field[8] :
+        return playing_field[2],2,270
+    # 3 = 6 = 9
+    if playing_field[3] == playing_field[6] == playing_field[9] :
+        return playing_field[3],3,270
+    # 1 = 5 = 9
+    if playing_field[1] == playing_field[5] == playing_field[9] :
+        return playing_field[1],1,315
+    # 3 = 5 = 7
+    if playing_field[3] == playing_field[5] == playing_field[7] :
+        return playing_field[3],3,225
+
+
+    return -1  # Ніхто не виграв
+
+
+#Бонс
+def crossOut(cell,h,who):
+    x = x_cor[cell]
+    y = y_cor[cell]
+    if h == 0:
+        y += size//2
+        s= size*3
+    elif h == 270:
+        x+= size//2
+        s = size*3
+    else:
+        y += size
+        s =size*1.4*3
+    if who != "нічія":
+        start(x,y)
+        setheading(h)
+        color("green")
+        width(7)
+        fd(s)
+    start(0,0)
+    write(f"Виграв - {who}", font=("Arial",20,"bold"))
