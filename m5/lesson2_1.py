@@ -32,36 +32,33 @@ t1 = create_t(0,0,0,"pink")
 t2 = create_t(0,0,90,"violet")
 t3 = create_t(0,0,180,"lightblue")
 t4 = create_t(0,0,270,"gold")
+def add_write_count():
+    cl.count += 1
+    cl.clear()
+    cl.write(f"Click: {cl.count}", font = ("Arial", 24))
+
 def click1(x, y):
     t1.lt(randint(30,200))
-    click.count += 1
-    click.clear()
-    click.write(f"Click: {click.count}", font = ("Arial", 24))
+    add_write_count()
    
 def click2(x, y):
     t2.lt(randint(30,200))
-    click.count += 1
-    click.clear()
-    click.write(f"Click: {click.count}", font = ("Arial", 24))
+    add_write_count()
    
 def click3(x, y):
     t3.lt(randint(30,200))
-    click.count += 1
-    click.clear()
-    click.write(f"Click: {click.count}", font = ("Arial", 24))
+    add_write_count()
    
 def click4(x, y):
     t4.lt(randint(30,200))
-    click.count += 1
-    click.clear()
-    click.write(f"Click: {click.count}", font = ("Arial", 24))
+    add_write_count()
    
 t1.onclick(click1)
 t2.onclick(click2)
 t3.onclick(click3)
 t4.onclick(click4)
 
-def point(t):
+def check_run(t):
     if abs(t.xcor()) < 200 and abs(t.ycor()) < 200:
         t.fd(2)
     else:
@@ -70,17 +67,17 @@ def point(t):
         run.write(f"Втечі: {run.count}", font = ("Arial", 24))
 
 while cl.count < 20 and run.count < 4:
-    point(t1)
-    point(t2)
-    point(t3)
-    point(t4)
+    check_run(t1)
+    check_run(t2)
+    check_run(t3)
+    check_run(t4)
     sleep(0.1)
        
-if click.count >= 20:
-    click.pu()
-    click.goto(0,0)
-    click.write("You winn", font = ("Arial", 40))
-if runner.count >= 4:
-    runner.pu()
-    runner.goto(0,0)
-    runner.write("You lose", font = ("Arial", 40))
+if cl.count >= 20:
+    cl.pu()
+    cl.goto(0,0)
+    cl.write("You winn", font = ("Arial", 40))
+if run.count >= 4:
+    run.pu()
+    run.goto(0,0)
+    run.write("You lose", font = ("Arial", 40))
