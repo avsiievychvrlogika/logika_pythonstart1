@@ -30,3 +30,13 @@ def create_lbl(x, y, col,txt):
     l.update(txt)
     return l
 
+
+
+screen.bgcolor("black")
+pole = create_t(-150, 150, "turtle", "white")
+pole.ht()
+pole.begin_fill()
+for _ in range(4):
+    pole.fd(300)
+    pole.lt(90)
+pole.end_fill()
