@@ -30,3 +30,41 @@ def create_lbl(x, y, col,txt):
     l.update(txt)
     return l
 
+
+
+screen.bgcolor("black")
+pole = create_t(-150, 150, "turtle", "white")
+pole.ht()
+pole.begin_fill()
+for _ in range(4):
+    pole.fd(300)
+    pole.lt(90)
+pole.end_fill()
+
+
+def spawn_a():
+    a = create_t(randint(-130, 130), 150, "circle", choice(colors))
+    appels.append(a)
+    def del_a(a):
+        a.ht()
+        appels.remove(a)
+    a.del_a = del_a
+  
+    def move():
+        a.fd(5)
+    a.move = move
+   
+    def check_miss():
+        if a.ycor() <= - 150:
+            a.ht()
+            appels.remove(a)
+            miss.update( "Miss")
+    a.check_miss = check_miss
+  
+    def check_catch():
+        x, y = plt.xcor(), plt.ycor()
+        if a.distance(x,y) <= 10:
+            a.ht()
+            appels.remove(a)
+            catch.update("Catch")
+    a.check_catch = check_catch
