@@ -1,3 +1,8 @@
+from turtle import *
+from random import randint, choice
+ht()
+screen = getscreen()
+# ваш код
 def create_t(x, y, sh, col):
     t = Turtle()
     t.speed(0)
@@ -41,6 +46,9 @@ for _ in range(4):
     pole.lt(90)
 pole.end_fill()
 
+appels=[]
+colors=["red","gold","green"]
+
 
 def spawn_a():
     a = create_t(randint(-130, 130), 150, "circle", choice(colors))
@@ -68,3 +76,42 @@ def spawn_a():
             appels.remove(a)
             catch.update("Catch")
     a.check_catch = check_catch
+    
+miss = create_lbl(-150,160, "red", "Miss")
+catch = create_lbl(70, 160, "green", "Catch")
+
+plt=create_t(0,-130,"square","pink")
+
+def moveL():
+    if plt.xcor()>-140:
+        plt.seth(180)
+        plt.fd(10)
+        
+def moveR():
+    if plt.xcor()<140:
+        plt.seth(0)
+        plt.fd(10)
+        
+screen.onkey(moveL, "Left")
+screen.onkey(moveR, "Right")
+screen.listen()
+
+def check_end():
+    if miss.count>=3:
+        return miss.white_end("Ви програли")
+    if catch.count>=10:
+        return catch.white_end("Ви виграли")
+    return False
+def game():
+    if randint(1,30)==1:
+        spawn_a()
+    for a in appels:
+        a.move()
+        a.check_miss()
+        a.check_catch()
+    if not check_end():
+        screen.ontimer(game,50)
+spawn_a()
+game()
+
+done()
