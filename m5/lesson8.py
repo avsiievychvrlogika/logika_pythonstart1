@@ -73,7 +73,7 @@ def info(text, col, bg):
 
 class Player(Turtle):
     # TYPE: статична властивість — лічильник помилок усіх гравців
-    
+    errors = 0
 
     def __init__(self, x, y, game):
         super().__init__(shape="square")
@@ -122,7 +122,7 @@ class Player(Turtle):
                     break
                 else:
                     # TYPE: збільшуємо статичне поле класу Player
-                    ...
+                    Player.errors += 1
 
         if end_level:
             for robot in self.game.level.robots:
@@ -147,6 +147,8 @@ class Robot(Turtle):
         self.__command_x = x2
         self.__command_y = y2
 
+
+
     def move(self):
         if self.is_right:
             self.goto(self.__command_x, self.__command_y)
@@ -154,14 +156,14 @@ class Robot(Turtle):
 
 class Level:
     # TYPE: статична (класова) властивість із доступними кольорами
-    
+    colorsList = ("red", "blue", "orange", "green")
 
     def __init__(self):
         self.robots = []
 
     def add_robot(self, x1, y1, x2, y2, text, is_right):
         # TYPE: беремо колір зі статичної властивості класу
-        col="black"
+        col = Level.colorsList[len(self.robots)]
         r = Robot(x1, y1, x2, y2, col, text, is_right)
         self.robots.append(r)
 
@@ -191,7 +193,8 @@ class Game:
 
     def next_level(self):
         # TYPE: перемикаємо рівень і показуємо інформацію
-        ...
+        self.currentLevel += 1
+        info(f"Рівень {self.currentLevel} пройдено!", "green", "orange")
 
         if self.currentLevel >= len(Game.LEVEL_DATA):
             info("Перемога!", "white", "green")
@@ -205,4 +208,3 @@ info("Знайдіть унікальні слова!", "white", "green")
 screen.listen()
 game = Game()
 done()
-
